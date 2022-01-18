@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "android": "wdio android.wdio.conf.js",
+    "iOS": "wdio ios.wdio.conf.js --spec ./test/specs/iOS.js"
   },
   "keywords": [],
   "author": "",

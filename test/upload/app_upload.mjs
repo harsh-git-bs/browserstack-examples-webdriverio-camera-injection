@@ -2,7 +2,7 @@ import axios from "axios";
 import { createReadStream } from "fs";
 import FormData from "form-data";
 
-let app_path = "./resources/sample_app/CameraImage-debug.apk";
+let app_path = "./test/upload/resources/sample_app/CameraImage-debug.apk";
 
 const formData = new FormData();
 const appPath = createReadStream(app_path);

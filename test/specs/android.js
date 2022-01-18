@@ -1,8 +1,4 @@
-// import { axios_response as mediaUploadApiResponse } from "../upload/media_upload.mjs";
-// import { writeFile, readFile } from "fs";
-
-describe("Camera Injection", () => {
-
+describe("Android Camera Injection", () => {
   it("Captures injected image for Android", async () => {
     var startCameraButton = await $(`id=com.bsstag.cameraimage:id/button`);
     await startCameraButton.click();

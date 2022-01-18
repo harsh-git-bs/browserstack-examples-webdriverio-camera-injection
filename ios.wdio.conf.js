@@ -1,6 +1,5 @@
 import { axios_response as mediaUploadApiResponse } from "./test/upload/media_upload.mjs";
 // import { axios_response as appUploadApiResponse } from "./test/upload/app_upload.mjs";
-
 exports.config = {
   //
   // ====================
@@ -53,90 +52,38 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ["./test/specs/**/*.js"],
+  // specs: ["./test/specs/**/*.js"],
+  specs: ["./test/specs/iOS.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
   ],
-  //
   // ============
-  // Capabilities
-  // ============
-  // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-  // time. Depending on the number of capabilities, WebdriverIO launches several test
-  // sessions. Within your capabilities you can overwrite the spec and exclude options in
-  // order to group specific specs to a specific capability.
-  //
-  // First, you can define how many instances should be started at the same time. Let's
-  // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-  // set maxInstances to 1; wdio will spawn 3 processes. Therefore, if you have 10 spec
-  // files and you set maxInstances to 10, all spec files will get tested at the same time
-  // and 30 processes will get spawned. The property handles how many capabilities
-  // from the same test should run tests.
-  //
   maxInstances: 10,
-  //
-  // If you have trouble getting all important capabilities together, check out the
-  // Sauce Labs platform configurator - a great tool to configure your capabilities:
-  // https://saucelabs.com/platform/platform-configurator
   //
 
   capabilities: [
     {
       project: "Webdriverio Camera Injection Project",
       build: "Camera Injection Demo",
-      name: "Android Camera Injection",
-      device: "Samsung Galaxy S10",
+      name: "iOS Camera Injection",
+      device: "iPhone 12",
       "browserstack.debug": "true",
-      autoGrantPermissions: "true",
+      autoAcceptAlerts: "true",
       "browserstack.enableCameraImageInjection": "true",
-      app:
-        process.env.BROWSERSTACK_APP_ID ||
-        "bs://bfc5c2fb5961ffaae75e9db4c29a2374e6172108",
-      //   maxInstances: 5,
-      // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-      // grid with only 5 firefox instances available you can make sure that not more than
-      // 5 instances get started at a time.
-      //
-      //   browserName: "chrome",
-      //   acceptInsecureCerts: true,
-      // If outputDir is provided WebdriverIO can capture driver session logs
-      // it is possible to configure which logTypes to include/exclude.
-      // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-      // excludeDriverLogs: ['bugreport', 'server'],
+      app: process.env.BROWSERSTACK_APP_ID || "iOSCamera",
+      // "iOSCamera",
+      // app:
+      //   process.env.BROWSERSTACK_APP_ID ||
+      //   "bs://790c59917d7e357a0f967f36a9ef651472726013",
+      // app:
+      //   process.env.BROWSERSTACK_APP_ID ||
+      //   "bs://bfc5c2fb5961ffaae75e9db4c29a2374e6172108",
     },
   ],
-  //
-  // ===================
-  // Test Configurations
-  // ===================
-  // Define all options that are relevant for the WebdriverIO instance here
-  //
-  // Level of logging verbosity: trace | debug | info | warn | error | silent
   logLevel: "info",
-  //
-  // Set specific log levels per logger
-  // loggers:
-  // - webdriver, webdriverio
-  // - @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
-  // - @wdio/mocha-framework, @wdio/jasmine-framework
-  // - @wdio/local-runner
-  // - @wdio/sumologic-reporter
-  // - @wdio/cli, @wdio/config, @wdio/utils
-  // Level of logging verbosity: trace | debug | info | warn | error | silent
-  // logLevels: {
-  //     webdriver: 'info',
-  //     '@wdio/appium-service': 'info'
-  // },
-  //
-  // If you only want to run your tests until a specific amount of tests have failed use
-  // bail (default is 0 - don't bail, run all tests).
+
   bail: 0,
-  //
-  // Set a base URL in order to shorten url command calls. If your `url` parameter starts
-  // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
-  // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
-  // gets prepended directly.
   baseUrl: "",
   //
   // Default timeout for all waitFor* commands.
@@ -198,8 +145,14 @@ exports.config = {
    * @param {Object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  onPrepare: function (config, capabilities) {
+    // appUploadApiResponse.then(async (response) => {
+    //   console.log(response);
+    //   capabilities[0]["app"] = response;
+    //   console.log("Onprepare capabilities:  " + capabilities[0]["project"]);
+    // });
+    console.log("ON PREPARE: " + capabilities);
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -230,7 +183,7 @@ exports.config = {
    */
   before: function (capabilities, specs) {
     mediaUploadApiResponse
-      .then(async (response) => {
+      .then((response) => {
         console.log("Media URL is " + response);
         driver.execute(
           'browserstack_executor: {"action": "cameraImageInjection", "arguments": {"imageUrl":"' +
@@ -335,3 +288,10 @@ exports.config = {
   //onReload: function(oldSessionId, newSessionId) {
   //}
 };
+
+// appUploadApiResponse.then((caps) => {
+//   configVar.capabilities.push(caps);
+//   console.log("CONFIG" + configVar);
+// });
+
+// exports.config = configVar;

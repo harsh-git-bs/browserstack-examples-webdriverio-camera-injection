@@ -32,5 +32,4 @@ const axios_response = axios(config)
     console.log("Media upload Failed!");
     console.log(error);
   });
-
 export { axios_response };
