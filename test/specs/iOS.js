@@ -1,7 +1,4 @@
-// import { axios_response as mediaUploadApiResponse } from "../upload/media_upload.mjs";
-// import { writeFile, readFile } from "fs";
-
-//bs://790c59917d7e357a0f967f36a9ef651472726013
+//bs://3b3ee6f850ada22ec6da50ee65a23a8dbbeecce4
 
 describe("iOS Camera Injection", () => {
   it("Captures injected image for iOS", async () => {
@@ -13,7 +10,5 @@ describe("iOS Camera Injection", () => {
 
     var usePhotoButton = await $(`[name="Use Photo"]`);
     await usePhotoButton.click();
-
-    // await browser.saveScreenshot("sample.png");
   });
 });

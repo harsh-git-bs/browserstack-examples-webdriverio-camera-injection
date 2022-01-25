@@ -1,5 +1,6 @@
-import { axios_response as mediaUploadApiResponse } from "./test/upload/media_upload.mjs";
-// import { axios_response as appUploadApiResponse } from "./test/upload/app_upload.mjs";
+import { mediaUpload as mediaUploadApiResponse } from "./test/upload/media_upload.mjs";
+import { appUpload as appUploadApiResponse } from "./test/upload/app_upload.mjs";
+
 exports.config = {
   //
   // ====================
@@ -68,17 +69,10 @@ exports.config = {
       build: "Camera Injection Demo",
       name: "iOS Camera Injection",
       device: "iPhone 12",
-      "browserstack.debug": "true",
       autoAcceptAlerts: "true",
+      "browserstack.debug": "true",
       "browserstack.enableCameraImageInjection": "true",
       app: process.env.BROWSERSTACK_APP_ID || "iOSCamera",
-      // "iOSCamera",
-      // app:
-      //   process.env.BROWSERSTACK_APP_ID ||
-      //   "bs://790c59917d7e357a0f967f36a9ef651472726013",
-      // app:
-      //   process.env.BROWSERSTACK_APP_ID ||
-      //   "bs://bfc5c2fb5961ffaae75e9db4c29a2374e6172108",
     },
   ],
   logLevel: "info",
@@ -145,13 +139,9 @@ exports.config = {
    * @param {Object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  onPrepare: function (config, capabilities) {
-    // appUploadApiResponse.then(async (response) => {
-    //   console.log(response);
-    //   capabilities[0]["app"] = response;
-    //   console.log("Onprepare capabilities:  " + capabilities[0]["project"]);
-    // });
-    console.log("ON PREPARE: " + capabilities);
+  onPrepare: async function (config, capabilities) {
+    var appResponse = await appUploadApiResponse();
+    capabilities[0]["app"] = appResponse;
   },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -181,19 +171,13 @@ exports.config = {
    * @param {Array.<String>} specs        List of spec file paths that are to be run
    * @param {Object}         browser      instance of created browser/device session
    */
-  before: function (capabilities, specs) {
-    mediaUploadApiResponse
-      .then((response) => {
-        console.log("Media URL is " + response);
-        driver.execute(
-          'browserstack_executor: {"action": "cameraImageInjection", "arguments": {"imageUrl":"' +
-            response +
-            '"}}'
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  before: async function (capabilities, specs) {
+    var imageResponse = await mediaUploadApiResponse();
+    driver.execute(
+      'browserstack_executor: {"action": "cameraImageInjection", "arguments": {"imageUrl":"' +
+        imageResponse +
+        '"}}'
+    );
   },
   /**
    * Runs before a WebdriverIO command gets executed.

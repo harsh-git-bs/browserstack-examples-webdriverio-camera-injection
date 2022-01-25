@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "android": "wdio android.wdio.conf.js",
-    "iOS": "wdio ios.wdio.conf.js --spec ./test/specs/iOS.js"
+    "android": "export PLATFORM_NAME=Android; echo $PLATFORM_NAME; wdio wdio.conf.js --spec ./test/specs/android.js",
+    "ios": "export PLATFORM_NAME=iOS; echo $PLATFORM_NAME; wdio wdio.conf.js --spec ./test/specs/iOS.js"
   },
   "keywords": [],
   "author": "",

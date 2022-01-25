@@ -53,8 +53,8 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  // specs: ["./test/specs/**/*.js"],
-  specs: ["./test/specs/android.js"],
+  specs: ["./test/specs/**/*.js"],
+  // specs: ["./test/specs/android.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -67,12 +67,10 @@ exports.config = {
     {
       project: "Webdriverio Camera Injection Project",
       build: "Camera Injection Demo",
-      name: "Android Camera Injection",
-      device: "Samsung Galaxy S10",
+      name: `${process.env.PLATFORM_NAME} Camera Injection`,
       "browserstack.debug": "true",
-      autoGrantPermissions: "true",
       "browserstack.enableCameraImageInjection": "true",
-      app: process.env.BROWSERSTACK_APP_ID || "androidCamera",
+      app: process.env.BROWSERSTACK_APP_ID,
     },
   ],
   logLevel: "info",
@@ -142,6 +140,13 @@ exports.config = {
   onPrepare: async function (config, capabilities) {
     var appResponse = await appUploadApiResponse();
     capabilities[0]["app"] = appResponse;
+    if (process.env.PLATFORM_NAME == "Android") {
+      capabilities[0]["device"] = "Samsung Galaxy S10";
+      capabilities[0]["autoGrantPermissions"] = "true";
+    } else if (process.env.PLATFORM_NAME == "iOS") {
+      capabilities[0]["device"] = "iPhone 12";
+      capabilities[0]["autoAcceptAlerts"] = "true";
+    }
   },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
