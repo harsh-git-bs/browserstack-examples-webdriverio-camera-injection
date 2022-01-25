@@ -4,7 +4,6 @@ import FormData from "form-data";
 
 var mediaUpload = async () => {
   let media_path = "./test/upload/resources/sample_image/bstack.jpg";
-  // let media_path = "./test/upload/resources/sample_image/logo.png";
 
   const formData = new FormData();
   const mediaPath = createReadStream(media_path);
@@ -30,14 +29,5 @@ var mediaUpload = async () => {
     `Media Uploaded Successfully with response - ${axios_response.data.media_url}`
   );
   return axios_response.data.media_url;
-
-  // .then((response) => {
-  //   console.log("Media uploaded Successfully!");
-  //   return response.data.media_url;
-  // })
-  // .catch((error) => {
-  //   console.log("Media upload Failed!");
-  //   console.log(error);
-  // });
 };
 export { mediaUpload };

@@ -5,7 +5,7 @@ import FormData from "form-data";
 var appUpload = async () => {
   if (process.env.PLATFORM_NAME == "Android") {
     var app_path = "./test/upload/resources/sample_app/CameraImage-debug.apk";
-  } else {
+  } else if (process.env.PLATFORM_NAME == "iOS") {
     var app_path =
       "./test/upload/resources/sample_app/IOSTakePhotoTutorial.ipa";
   }
