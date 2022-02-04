@@ -100,9 +100,9 @@ Following are the preconfigured test execution profiles available in the sample 
   <td><code>npm run iOS</code></td>
   <td><code>wdio.conf.js</code></td>
  </tr>
- 
- 
- # :card_file_box: [Additional Resources](https://github.com/browserstack/browserstack-examples-junit5#additionalresources)
+</table>
+
+# :card_file_box: [Additional Resources](https://github.com/browserstack/browserstack-examples-junit5#additionalresources)
 
 - View your test results on the [BrowserStack App-Automate dashboard](https://app-automate.browserstack.com/dashboard/v2)
 - Documentation for writing [App- Automate test scripts in WebdriverIO](https://www.browserstack.com/docs/app-automate/appium/getting-started/nodejs/webdriverio)
