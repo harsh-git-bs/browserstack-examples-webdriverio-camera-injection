@@ -91,14 +91,14 @@ Following are the preconfigured test execution profiles available in the sample 
   </td>
   <td>Runs a single camera injection test on Samsung Galaxy S10 device on Browserstack.</td>
   <td><code>npm run android</code></td>
-  <td><code>wdio.conf.js</code></td>
+  <td><code>package.json</code></td>
  </tr>
   <tr>
   <td>iOS
    </td>
   <td>Runs a single camera injection test on iPhone 12 device on Browserstack.</td>
   <td><code>npm run iOS</code></td>
-  <td><code>wdio.conf.js</code></td>
+  <td><code>package.json</code></td>
  </tr>
 </table>
 
