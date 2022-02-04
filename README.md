@@ -6,8 +6,7 @@
 
 WebdriverIO is a progressive automation framework built to automate modern web and mobile applications. It simplifies the interaction with your app and provides a set of plugins that help you create a scalable, robust and flakiness test suite.
 
-This BrowserStack Example repository demonstrates a WebdriverIO tests framework written in Mocha and nodeJS with camera injection testing capabilities. The WebdriverIO test scripts are written for the sample [BrowserStack Demo web application](https://bstackdemo.com) ([Github](https://github.com/browserstack/browserstack-demo-app)). Both the apps have camera capture functionality which captures image and displays on the next screen.
-The WebDriverIO tests run on android and iOS platforms camera injection capabilities.
+This BrowserStack Example repository demonstrates a WebdriverIO tests framework written in Mocha and nodeJS with camera injection testing capabilities. The WebdriverIO test scripts are written for sample [android](test/upload/resources/sample_app/CameraImage-debug.apk) and [iOS](test/upload/resources/sample_app/IOSTakePhotoTutorial.ipa) apps. Both the apps have camera capture functionality which captures image and displays on the next screen. The WebDriverIO tests run on android and iOS platforms camera injection capabilities.
 
 ## Tests Included in this Repository
 
@@ -18,7 +17,7 @@ Following are the test cases included in this repository:
 | Android Camera Injection | Captures injected image for Android | This test case injects [image](test/upload/resources/sample_image/bstack.jpg) in [app](test/upload/resources/sample_app/CameraImage-debug.apk) on Android device. |
 | iOS Camera Injection     | Captures injected image for iOS     | This test case injects [image](test/upload/resources/sample_image/bstack.jpg) in [app](test/upload/resources/sample_app/IOSTakePhotoTutorial.ipa) on iOS device.  |
 
-# :gear: [Repository Setup](https://github.com/browserstack/browserstack-examples-junit5#repositorysetup)
+# :gear: [Repository Setup](https://github.com/browserstackCE/browserstack-examples-webdriverio-camera-injection#repositorysetup)
 
 ## Prerequisites
 
@@ -26,7 +25,7 @@ Ensure you have the following dependencies installed on the machine
 
 1. [NodeJs](https://nodejs.org/en/download/)
 
-2. [BrowserStack Automate Account](https://www.browserstack.com/automate). ![BrowserStack](https://img.shields.io/badge/For-BrowserStackAutomate-orange)
+2. [BrowserStack App-Automate Account](https://www.browserstack.com/app-automate). ![BrowserStack](https://img.shields.io/badge/For-BrowserStackAutomate-orange)
 
 ## :wrench: Repository Configuration
 
@@ -51,7 +50,7 @@ Ensure you have the following dependencies installed on the machine
 
 :pushpin: Create a new [BrowserStack account](https://www.browserstack.com/users/sign_up) or use an existing one.
 <br/> <br/>
-:pushpin: Identify your BrowserStack username and access key from the [BrowserStack Automate Dashboard](https://automate.browserstack.com/) and export them as environment variables using the below commands.
+:pushpin: Identify your BrowserStack username and access key from the [BrowserStack App-Automate Dashboard](https://app-automate.browserstack.com/) and export them as environment variables using the below commands.
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -71,7 +70,7 @@ set BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
 
 Alternatively, you can also add your username and access_key objects in [webdriverio Configuration file](wdio.conf.js), [App upload file](test/upload/app_upload.mjs) and [Media upload file](test/upload/media_upload.mjs).
 
-:page_facing_up: Note: We have configured a list of test capabilities in this [configuration file](wdio.conf.js). You are free update them based on your device test requirements. The exact test capability values can be easily identified using the [Browserstack Capability Generator](https://browserstack.com/automate/capabilities)
+:page_facing_up: Note: We have configured a list of test capabilities in this [configuration file](wdio.conf.js). You are free update them based on your device test requirements. The exact test capability values can be easily identified using the [Browserstack Capability Generator](https://browserstack.com/app-automate/capabilities)
 
 ## Test Execution Profiles
 
