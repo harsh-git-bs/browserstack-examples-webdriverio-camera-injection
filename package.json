@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "android": "export PLATFORM_NAME=Android; echo $PLATFORM_NAME; wdio wdio.conf.js --spec ./test/specs/android.js",
-    "ios": "export PLATFORM_NAME=iOS; echo $PLATFORM_NAME; wdio wdio.conf.js --spec ./test/specs/iOS.js"
+    "android": "export PLATFORM_NAME=Android; wdio wdio.conf.js --spec ./test/specs/android.js",
+    "iOS": "export PLATFORM_NAME=iOS; wdio wdio.conf.js --spec ./test/specs/iOS.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Harsh Jain",
   "license": "ISC",
   "dependencies": {
     "@wdio/cli": "^7.16.12",
